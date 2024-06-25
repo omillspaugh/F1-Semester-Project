@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# Install necessary packages
+
 sudo apt install -y jq
 sudo apt install -y sysvbanner
 
-# Define the dataFormat function
+
 function dataFormat {
   local year=$1
   local constructFile="${year}_constructor_standings.json"
@@ -21,7 +21,6 @@ function dataFormat {
   done <<< "$standings"
 }
 
-# Define the writeToFinalFile function
 function writeToFinalFile {
   local season=$1
   local position=$2
@@ -36,9 +35,9 @@ function writeToFinalFile {
   fi
 
   echo "Writing to File"
-
+  
   {
-    echo "=== $season Season ==="
+    echo "Season: $season"
     echo "Position: $position"
     echo "Constructor: $constructor"
     echo "Points: $points"
@@ -47,7 +46,7 @@ function writeToFinalFile {
   } >> "$file_path"
 }
 
-# Check for the correct number of arguments
+
 if [ $# -ne 2 ]; then
     echo "Usage: $0 <startYear> <endYear>"
     exit 1
@@ -58,7 +57,7 @@ endYear=$2
 
 echo "Fetching Constructor's Championship Table from $startYear to $endYear..."
 
-# Fetch and process data for each year in the range
+
 for year in $(eval echo {$startYear..$endYear}); do
   echo "Fetching data for year $year..."
   curl -o "${year}_constructor_standings.json" "http://ergast.com/api/f1/${year}/constructorStandings.json"
