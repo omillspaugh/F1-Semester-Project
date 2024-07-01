@@ -1,20 +1,28 @@
 #!/usr/bin/env python
 
+# Provides foundation for creating HTTP request handler. Defines methods for creating request types and getting 
+#responses. HTTPServer listens for incoming requests on a specific port. Handles incoming requests and sends responses.
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import subprocess
 
+# Defines custom handler class to work with the HTTP server to process GET requests for data. After recieving the
+#GET request, the initial response is a HTML page with status 200.
 class F1Handler(BaseHTTPRequestHandler):
   def do_GET(self):
     self.send_response(200)
     self.send_header('Content-type', 'text/html')
     self.end_headers()
+    
 
-    # Get user input from URL parameters (optional)
-    # You can modify this section to handle form data if needed
-    start_year = self.path.split("=")[1].split("&")[0]  # Assuming format like "/?startYear=2020&endYear=2023"
+    # Get user input from URL parameters. Extracts start year from URL path and sets default if extraction fails.
+   try:
+    start_year = self.path.split("=")[1].split("&")[0].split("=")[1]
+  except IndexError:
+    start_year = 2019 
     end_year = self.path.split("=")[2]
 
-    # Welcome message and menu
+    # Creates HTML page with welcome message and menu. Contains data range, categories using hyperlinks, and formats 
+    #page with title.
     html_content = f"""
     <!DOCTYPE html>
     <html lang="en">
@@ -35,16 +43,21 @@ class F1Handler(BaseHTTPRequestHandler):
     </body>
     </html>
     """
+    # Sends generated HTML content to web browser
     self.wfile.write(html_content.encode())
 
-  def do_POST(self):  # Handle form data if needed (optional)
+   # Extend script's functionality to handle data submission from other applications that use 
+   #the POST method (sending data in the request body of the HTTP request).
+  def do_POST(self):  
     pass
 
+# Creates a simple HTTP server that listens for requests on port 8000 and uses the handler class for those requests.
 def main():
-  port = 8000  # Change this if needed
-  httpd = HTTPServer(('', port), Formula1DataHandler)
+  port = 8000 #standard port for HTTP web traffic is 80, this port is for testing purposes to avoid web traffic  
+  httpd = HTTPServer(('', port), F1Handler)
   print(f"Serving on port {port}")
   httpd.serve_forever()
 
+# Runs main function only when script is directly executed and not imported as a module.
 if __name__ == '__main__':
   main()
