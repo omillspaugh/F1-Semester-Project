@@ -8,12 +8,12 @@ echo
 echo "Looking at the year range $startYear to $endYear, I can provide the following data:"
 echo
 echo "1. Constructor's Championship Table"
-echo "2. World Driver's Championship Table"
+echo "2. Driver's Championship Table"
 echo "3. Driver List"
 echo "4. Constructor List"
 echo "5. General Info about Formula 1"
 
-read -p "Please Enter the number of the menu you would like to read more about: " menuSelect
+read -p "Please enter the corresponding number of the data choice you would like to view: " menuSelect
 
 if [ $menuSelect -eq 1 ]; then
     ./constructorChampTablePull.sh "$startYear" "$endYear" 
