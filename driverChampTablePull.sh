@@ -8,8 +8,8 @@ sudo apt install -y texlive-latex-base
 function dataFormat {
   local year=$1
   local constructFile="${year}_driver_standings.json"
-  local season=$(jq -r '.MRData.StandingsTable.season' "$driverFile")
-  local standings=$(jq -c '.MRData.StandingsTable.StandingsLists[0].DriverStandings[]' "$driverFile")
+  local season=$(jq -r '.MRData.StandingsTable.season' "$constructFile")
+  local standings=$(jq -c '.MRData.StandingsTable.StandingsLists[0].DriverStandings[]' "$constructFile")
 
   while IFS= read -r standing; do
     local position=$(echo "$standing" | jq -r '.position')
