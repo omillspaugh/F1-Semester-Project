@@ -43,21 +43,17 @@ while [[ $menuSelect -lt 1 || $menuSelect -gt 5 ]]; do
   fi
 done
 
+read -p "Enter your selection (1-5): " menuSelect
 
-if [ $menuSelect -eq 1 ]; then
-    ./constructorChampTablePull.sh "$startYear" "$endYear" 
-elif [ $menuSelect -eq 2 ]; then
-    ./driverChampTablePull.sh "$startYear" "$endYear"
-elif [ $menuSelect -eq 3 ]; then
-    ./driverListPull.sh "$startYear" "$endYear"
-elif [ $menuSelect -eq 4 ]; then
-    ./constructorListPull.sh "$startYear" "$endYear"
-elif [ $menuSelect -eq 5 ]; then
-    pdflatex generalInfoF1.tex
-    ./generalInfoF1.tex
-else
-    echo "Invalid selection. Please enter a number between 1 and 5."
-fi
+case $menuSelect in
+  1) ./constructorChampTablePull.sh "$startYear" "$endYear" ;;
+  2) ./driverChampTablePull.sh "$startYear" "$endYear" ;;
+  3) ./driverListPull.sh "$startYear" "$endYear" ;;
+  4) ./constructorListPull.sh "$startYear" "$endYear" ;;
+  5) pdflatex generalInfoF1.tex && ./generalInfoF1.tex ;;
+  *) echo "Invalid selection. Please enter a number between 1 and 5." ;;
+esac
+
 read -p "Would you like to select another option (y/n)? " choice
 if [[ $choice =~ ^[Yy]$ ]]; then
   ./mainMenuf1.sh
