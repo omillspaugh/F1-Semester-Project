@@ -56,5 +56,13 @@ elif [ $menuSelect -eq 5 ]; then
     pdflatex generalInfoF1.tex
     ./generalInfoF1.tex
 else
-    echo "Invalid selection. Please enter a number between 1 and 4."
+    echo "Invalid selection. Please enter a number between 1 and 5."
+fi
+read -p "Would you like to select another option (y/n)? " choice
+if [[ $choice =~ ^[Yy]$ ]]; then
+  ./mainMenuf1.sh
+elif [[ $choice =~ ^[Nn]$ ]]; then
+  echo "Thank you for using the Formula 1 Data Aggregator. Goodbye"
+  else
+  echo "Invalid input. Please answer yes(y) or no(n)."
 fi
