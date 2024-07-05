@@ -64,3 +64,7 @@ for year in $(eval echo {$startYear..$endYear}); do
   jq . "${year}_constructor_standings.json"
   dataFormat "$year"
 done
+
+# Concatenate the text file with the constructor
+# standings to display the final information
+cat finalConstructorTable.txt
