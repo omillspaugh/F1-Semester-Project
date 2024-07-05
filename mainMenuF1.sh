@@ -58,20 +58,57 @@ read -p "Enter your selection (1-5): " menuSelect
 
 # Switch case to run the script for each selection, prints error message if script fails
 case $menuSelect in
-  1) ./constructorChampTablePull.sh "$startYear" "$endYear" ;; || echo "Error: Could not generate constructorChampTablePull.sh" ;;
-  2) ./driverChampTablePull.sh "$startYear" "$endYear" ;; || echo "Error: Could not generate driverChampTablePull.sh" ;;
-  3) ./driverListPull.sh "$startYear" "$endYear" ;; || echo "Error: Could not generate driverListPull.sh" ;;
-  4) ./constructorListPull.sh "$startYear" "$endYear" ;; || echo "Error: Could not generate constructorListPull.sh" ;;
-  5) pdflatex generalInfoF1.tex && ./generalInfoF1.tex ;; || echo "Error: Could not generate generalInfoF1.tex" ;;
-  *) echo "Invalid selection. Please enter a number between 1 and 5." ;;
+  1) 
+	./constructorChampTablePull.sh "$startYear" "$endYear" 
+	if [ $? -ne 0 ]; then
+		echo "Error: Could not generate constructorChampTablePull.sh" 
+	fi
+	;;
+  2) 
+	./driverChampTablePull.sh "$startYear" "$endYear"
+	if [ $? -ne 0 ]; then
+		echo "Error: Could not generate driverChampTablePull.sh"
+	fi
+	;;
+  3) 
+	./driverListPull.sh "$startYear" "$endYear"
+	if [ $? -ne 0 ]; then
+		echo "Error: Could not generate driverListPull.sh"
+	fi
+	;;
+  4) 
+	./constructorListPull.sh "$startYear" "$endYear" 
+	if [ $? -ne 0 ]; then
+		echo "Error: Could not generate constructorListPull.sh"
+	fi
+	;;
+  5) 
+	pdflatex generalInfoF1.tex
+	if [ $? -ne 0 }; then
+		echo "Error: Could not generate generalInfoF1.tex"
+	else
+		./generalInfoF1.tex
+		if [ $? -ne 0 ]; then
+			echo "Error: Could not open generalInfoF1.tex"
+		fi
+	fi
+	;;
+  *) 
+	echo "Invalid selection. Please enter a number between 1 and 5."
+	;;
 esac
 
-# Asks user if they want to select another option, goes back to calling main menu if yes, prints goodbye message if no, prints error message and prompts for a proper input if input is invalid
-read -p "Would you like to select another option (y/n)? " choice
-if [[ $choice =~ ^[Yy]$ ]]; then
-  ./mainMenuf1.sh
-elif [[ $choice =~ ^[Nn]$ ]]; then
-  echo "Thank you for using the Formula 1 Data Aggregator. Goodbye"
-  else
-  echo "Invalid input. Please answer yes(y) or no(n)."
-fi
+# Asks user if they want to select another option, goes back to calling main menu if yes,
+# prints goodbye message if no, prints error message and prompts for a proper input if input is invalid
+while true; do
+	read -p "Would you like to select another option (y/n)? " choice
+	if [[ $choice =~ ^[Yy]$ ]]; then
+  		./mainMenuF1.sh
+		break
+	elif [[ $choice =~ ^[Nn]$ ]]; then
+  		echo "Thank you for using the Formula 1 Data Aggregator. Goodbye"
+		break
+  	else
+ 		 echo "Invalid input. Please answer yes(y) or no(n)."
+	fi
+done
