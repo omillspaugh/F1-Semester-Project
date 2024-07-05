@@ -71,3 +71,7 @@ for year in $(eval echo {$startYear..$endYear}); do
   jq . "${year}_driver_standings.json"
   dataFormat "$year"
 done
+
+# Concatenate the text file with final diver standings
+# to display the information to the user
+cat finalDriverTable.txt
