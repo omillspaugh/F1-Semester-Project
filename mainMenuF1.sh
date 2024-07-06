@@ -1,10 +1,13 @@
 #!/bin/bash
 
-# Install required packages
-sudo apt install -y jq
-sudo apt install -y sysvbanner
-sudo apt install -y texlive-latex-base
+# Install required packages in the background
+sudo apt install -y jq &
+sudo apt install -y sysvbanner &
+sudo apt install -y texlive-latex-base &
 
+# Wait for all background processes to finish
+wait
+clear
 # Print welcome message and prompt user to input years
 echo "Welcome to the Formula 1 Data Aggregator!"
 echo "Please Enter the Years of Formula 1 Data you are searching for:"
@@ -28,7 +31,6 @@ while true; do
   read -p "Starting Year: " startYear
   if validateYear "$startYear"; then
     break
-     echo "Invalid year. Please enter a valid year."
   fi
 done
 
@@ -59,42 +61,40 @@ while [[ $menuSelect -lt 1 || $menuSelect -gt 5 ]]; do
   fi
 done
 
-read -p "Enter your selection (1-5): " menuSelect
-
 # Switch case to run the script for each selection, prints error message if script fails
 case $menuSelect in
-  1) 
-	./constructorChampTablePull.sh "$startYear" "$endYear" 
+  1)
+	./constructorChampTablePull.sh "$startYear" "$endYear"
 	if [ $? -ne 0 ]; then
-		echo "Error: Could not generate constructorChampTablePull.sh" 
+		echo "Error: Could not generate constructorChampTablePull.sh"
 	fi
 	;;
-  2) 
+  2)
 	./driverChampTablePull.sh "$startYear" "$endYear"
 	if [ $? -ne 0 ]; then
 		echo "Error: Could not generate driverChampTablePull.sh"
 	fi
 	;;
-  3) 
+  3)
 	./driverListPull.sh "$startYear" "$endYear"
 	if [ $? -ne 0 ]; then
 		echo "Error: Could not generate driverListPull.sh"
 	fi
 	;;
-  4) 
-	./constructorListPull.sh "$startYear" "$endYear" 
+  4)
+	./constructorListPull.sh "$startYear" "$endYear"
 	if [ $? -ne 0 ]; then
 		echo "Error: Could not generate constructorListPull.sh"
 	fi
 	;;
-  5) 
+  5)
 	pdflatex generalInfoF1.tex
-	if [ $? -ne 0 }; then
+	if [ $? -ne 0 ]; then
 		echo "Error: Could not generate generalInfoF1.tex"
 	else
-		./generalInfoF1.tex
+		evince generalInfoF1.pdf
 		if [ $? -ne 0 ]; then
-			echo "Error: Could not open generalInfoF1.tex"
+			echo "Error: Could not open generalInfoF1.pdf"
 		fi
 	fi
 	;;
