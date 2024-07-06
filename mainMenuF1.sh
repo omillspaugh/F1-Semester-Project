@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Install required packages
+sudo apt install -y jq
+sudo apt install -y sysvbanner
+sudo apt install -y texlive-latex-base
+
 # Print welcome message and prompt user to input years
 echo "Welcome to the Formula 1 Data Aggregator!"
 echo "Please Enter the Years of Formula 1 Data you are searching for:"

@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# Install required packages
-sudo apt install -y jq
-sudo apt install -y sysvbanner
-sudo apt install -y texlive-latex-base
-
 # Function to format the data
 function dataFormat {
   local year=$1
