@@ -1,10 +1,6 @@
 #!/bin/bash
 
 
-sudo apt install -y jq
-sudo apt install -y sysvbanner
-sudo apt install -y texlive-latex-base
-
 function dataFormat {
   local year=$1
   local constructFile="${year}_constructor_standings.json"

@@ -1,13 +1,15 @@
 #!/bin/bash
 
-# Install required packages in the background
-sudo apt install -y jq &
-sudo apt install -y sysvbanner &
-sudo apt install -y texlive-latex-base &
+# Check if the marker file exists, indicating that packages have already been installed
+MARKER_FILE="/tmp/f1_data_aggregator_installed"
 
-# Wait for all background processes to finish
-wait
+if [ ! -f "$MARKER_FILE" ]; then
+  ./install_packages.sh
+  touch "$MARKER_FILE"
+fi
+
 clear
+
 # Print welcome message and prompt user to input years
 echo "Welcome to the Formula 1 Data Aggregator!"
 echo "Please Enter the Years of Formula 1 Data you are searching for:"
