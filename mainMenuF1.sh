@@ -90,14 +90,9 @@ case $menuSelect in
 	fi
 	;;
   5)
-	pdflatex generalInfoF1.tex
+	./printGeneralInfoF1.sh
 	if [ $? -ne 0 ]; then
 		echo "Error: Could not generate generalInfoF1.tex"
-	else
-		evince generalInfoF1.pdf
-		if [ $? -ne 0 ]; then
-			echo "Error: Could not open generalInfoF1.pdf"
-		fi
 	fi
 	;;
   *) 
@@ -119,3 +114,4 @@ while true; do
  		 echo "Invalid input. Please answer yes(y) or no(n)."
 	fi
 done
+
