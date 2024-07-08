@@ -67,6 +67,6 @@ for year in $(eval echo {$startYear..$endYear}); do
   dataFormat "$year"
 done
 
-# Concatenate the text file with final diver standings
+# Concatenate the text file with final driver standings
 # to display the information to the user
 cat finalDriverTable.txt
