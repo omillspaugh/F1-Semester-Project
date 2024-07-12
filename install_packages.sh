@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Install required packages in the background
+sudo apt upgrade &
 sudo apt install -y jq &
 sudo apt install -y sysvbanner &
 sudo apt install -y texlive-latex-base &
