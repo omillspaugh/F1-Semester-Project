@@ -2,7 +2,7 @@
 Semester project for CS2080 dealing with F1 stat aggregation
 
 How to Run the F1 Aggregator:
-  1. The files invovled in running the main programmme are "install_packages.sh" , "generalInfoF1.tex" ,
+  1. The files involved in running the main programmme are "install_packages.sh" , "generalInfoF1.tex" ,
       "mainMenuF1.sh" , "printGeneralInfoF1.sh" , "constructorChampTablePull.sh" , "driverChampTablePull.sh" , "driverListPull.sh" , and "constructorListPull.sh" . 
   3. Make sure the correct permissions (chmod 755) are set on all of the script files to allow it to be executed.
   4. Enter " ./mainMenuF1.sh " into the command line to start the main programme. The first thing that it will do is install all of the packages necessary to run the programme for any possible user input.
