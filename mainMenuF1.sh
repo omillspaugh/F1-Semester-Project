@@ -52,10 +52,10 @@ echo "Looking at the year range $startYear to $endYear, I can provide the follow
 echo
 menuSelect=0
 while [[ $menuSelect -lt 1 || $menuSelect -gt 5 ]]; do
-  echo "1. Constructor's Championship Table"
-  echo "2. Driver's Championship Table"
-  echo "3. Driver List"
-  echo "4. Constructor List"
+  echo "1. 2022 Driver Number List"
+  echo "2. 2021 Driver Number List"
+  echo "3. 2020 Driver Number List"
+  echo "4. 2019 Driver Number List""
   echo "5. General Info about Formula 1"
   read -p "Please enter the corresponding number of the data choice you would like to view: " menuSelect
   if [[ $menuSelect -lt 1 || $menuSelect -gt 5 ]]; then
@@ -66,15 +66,15 @@ done
 # Switch case to run the script for each selection, prints error message if script fails
 case $menuSelect in
   1)
-	./constructorChampTablePull.sh "$startYear" "$endYear"
+	./driverSearch2022.sh
 	if [ $? -ne 0 ]; then
-		echo "Error: Could not generate constructorChampTablePull.sh"
+		echo "Error: Could not generate driverSearch2022.sh"
 	fi
 	;;
   2)
-	./driverChampTablePull.sh "$startYear" "$endYear"
+	./driverSearch2021.sh
 	if [ $? -ne 0 ]; then
-		echo "Error: Could not generate driverChampTablePull.sh"
+		echo "Error: Could not generate driverSearch2021.sh"
 	fi
 	;;
   3)
@@ -114,4 +114,3 @@ while true; do
  		 echo "Invalid input. Please answer yes(y) or no(n)."
 	fi
 done
-
