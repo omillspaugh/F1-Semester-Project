@@ -7,13 +7,13 @@ available_driver_numbers=(1 11 44 63 16 55 3 4 14 31 10 22 5 18 6 23 24 77 20 47
 
 while true; do
     # Print menu of available driver numbers
-    echo "Available 2022  Driver Numbers:"
+    echo "Available Driver Numbers:"
     for number in "${available_driver_numbers[@]}"; do
         echo "$number"
     done
 
     # Prompt user to enter a driver number
-    read -p "Enter a driver number from the 2022 list above (or 'q' to quit): " selected_driver_number
+    read -p "Enter a driver number from the list above (or 'q' to quit): " selected_driver_number
 
     # Check if user wants to quit
     if [[ "$selected_driver_number" == "q" ]]; then
