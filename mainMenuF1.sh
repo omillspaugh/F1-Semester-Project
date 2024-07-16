@@ -30,19 +30,21 @@ done
 # Switch case to run the script for each selection, prints error message if script fails
 case $menuSelect in
   1)
-    scriptName="$DRIVER_SEARCH_BASE/driverSearch.sh"
-    if [ ! -f "$scriptName" ]; then
-      echo "Error: Script driverSearch.sh not found."
-      exit 1
-    fi
-    "$scriptName" || echo "Error: driverSearch.sh failed."
-    ;;
+	./driverSearch.sh
+	if [ $? -ne 0 ]; then
+		echo "Error: Script driverSearch.sh not found."
+      
+	fi
+	;;
   2)
-    "$GENERAL_INFO_SCRIPT" || echo "Error: Failed to generate general information."
-    ;;
+	./printGeneralInfoF1.sh
+	if [ $? -ne 0 ]; then
+		echo "Error: Could not generate generalInfoF1.tex"
+	fi
+    	;;
   *)
-    echo "Invalid selection."
-    ;;
+	echo "Invalid selection."
+	;;
 esac
 
 
