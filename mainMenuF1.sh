@@ -78,15 +78,15 @@ case $menuSelect in
 	fi
 	;;
   3)
-	./driverListPull.sh "$startYear" "$endYear"
+	./driverSearch2020.sh 
 	if [ $? -ne 0 ]; then
-		echo "Error: Could not generate driverListPull.sh"
+		echo "Error: Could not generate driverSearch2020.sh"
 	fi
 	;;
   4)
-	./constructorListPull.sh "$startYear" "$endYear"
+	./driverSearch2019.sh
 	if [ $? -ne 0 ]; then
-		echo "Error: Could not generate constructorListPull.sh"
+		echo "Error: Could not generate driverSearch2019.sh"
 	fi
 	;;
   5)
