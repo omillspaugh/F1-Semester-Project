@@ -29,8 +29,12 @@ driver_data=$(jq '.' "$output_file")
 broadcast_name=$(echo "$driver_data" | jq -r '.[0].broadcast_name')
 full_name=$(echo "$driver_data" | jq -r '.[0].full_name')
 team_name=$(echo "$driver_data" | jq -r '.[0].team_name')
+country_code=$(echo "$driver_data" | jq -r '.[0].country_code')
+driver_number_api=$(echo "$driver_data" | jq -r '.[0].driver_number')
 
 # Print extracted data
 echo "Broadcast Name: $broadcast_name"
 echo "Full Name: $full_name"
 echo "Team Name: $team_name"
+echo "Driver Country Code: $country code"
+echo "Driver Number: $driver_number_api"
