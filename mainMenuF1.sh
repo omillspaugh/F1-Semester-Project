@@ -55,7 +55,7 @@ while [[ $menuSelect -lt 1 || $menuSelect -gt 5 ]]; do
   echo "1. 2022 Driver Number List"
   echo "2. 2021 Driver Number List"
   echo "3. 2020 Driver Number List"
-  echo "4. 2019 Driver Number List""
+  echo "4. 2019 Driver Number List"
   echo "5. General Info about Formula 1"
   read -p "Please enter the corresponding number of the data choice you would like to view: " menuSelect
   if [[ $menuSelect -lt 1 || $menuSelect -gt 5 ]]; then
